@@ -22,11 +22,9 @@ RUN wget --quiet https://github.com/Kozea/Radicale/archive/${VERSION}.tar.gz --o
 RUN pip3 --no-cache-dir install passlib[bcrypt]
 # Remove build dependencies
 
-RUN apk del \
-      python3-dev \
-      build-base \
-      libffi-dev
-
+RUN apk del python3-dev build-base libffi-dev &&\
+    rm -Rf /root/.cache
+    
 # Persistent storage for data (Mount it somewhere on the host!)
 VOLUME /var/lib/radicale
 # Configuration data (Put the "config" file here!)
