@@ -15,11 +15,11 @@ RUN apk add --no-cache \
 # Install Radicale
 RUN wget --quiet https://github.com/Kozea/Radicale/archive/${VERSION}.tar.gz --output-document=radicale.tar.gz && \
     tar xzf radicale.tar.gz && \
-    pip3 install ./Radicale-${VERSION}[md5,bcrypt] && \
+    pip3 --no-cache-dir install ./Radicale-${VERSION}[md5,bcrypt] && \
     rm -r radicale.tar.gz Radicale-${VERSION}
 
 # Install dependencies for Radicale<2.1.9
-RUN pip3 install passlib[bcrypt]
+RUN pip3 --no-cache-dir install passlib[bcrypt]
 # Remove build dependencies
 
 RUN apk del \
